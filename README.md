@@ -1,4 +1,4 @@
-# stope_api_test-assigment
+# store_api_test-assigment
 
 ## Test assignment for a developer vacancy. 
 The app is API for a shop where you can get list of products and product information page.
