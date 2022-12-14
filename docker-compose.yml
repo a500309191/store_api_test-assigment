@@ -14,6 +14,7 @@ services:
     container_name: api_container
     build: .
     command: bash -c "python /app/api/manage.py migrate --noinput &&
+             source /app/api/create_superuser.sh &&
              python /app/api/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app/api/
