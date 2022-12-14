@@ -20,7 +20,7 @@ The app is API for a shop where you can get list of products and product informa
 1. To copy git repository to the local machine, run:
 
 ```bash
-git clone https://github.com/a500309191/stripe-test-app/blob/main/README.md
+git clone https://github.com/a500309191/store_api_test-assigment
 ```
 2. To run containers:
 
