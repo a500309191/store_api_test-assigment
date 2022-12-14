@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: db_container
+    image: postgres
+    volumes:
+      - postgres_data:/app/db/
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+  api:
+    container_name: api_container
+    build: .
+    command: bash -c "python /app/api/manage.py migrate --noinput &&
+             python /app/api/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app/api/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
