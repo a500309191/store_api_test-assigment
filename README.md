@@ -11,8 +11,8 @@ The app is API for a shop where you can get list of products and product informa
 
 | route:  | HTTP methods: | action: |
 | ------------- |-------------|-------------|
-| api/products// | GET | getting a list of all prodcuts |
-| api/products/<id> | GET | getting product details |
+| api/products/ | GET | getting a list of all prodcuts |
+| api/products/id | GET | getting product details |
 
 
 #### Local running instruction:
