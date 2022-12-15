@@ -10,12 +10,12 @@ The app is API for a shop where you can get list of products and product informa
 #### WEB API ROUTING TABLE:
 
 | route:  | HTTP methods: | action: |
-| ------------- |-------------|-------------|
+| ------------- |:-------------:|-------------|
 | api/products/ | GET | getting a list of all prodcuts |
 | api/products/id | GET | getting product details |
 
 
-#### Local running instruction:
+#### LOCAL RUNNING INSTRUCTION:
 
 1. To copy git repository to the local machine, run:
 
@@ -27,3 +27,10 @@ git clone https://github.com/a500309191/store_api_test-assigment
 ```bash
 docker-compose up
 ```
+
+
+#### ADMIN PAGE: http://localhost:8000/admin/ 
+
+*by docker-compose up command superuser will create automatically*
+
+**login/password: admin**
