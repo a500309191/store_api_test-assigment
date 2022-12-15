@@ -10,7 +10,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        data['path'] = ''.join(str(instance).split('.')[0:-1])
+        data['path'] = ''.join(str(instance.path.url).split('.')[0:-1])
         data['formats'] = [Format.objects.get(id=i.format_id).name for i in Image_Format.objects.filter(image_id=instance.id)]
         return data
 

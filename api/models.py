@@ -3,9 +3,7 @@ from PIL import Image as PIL_Image
 from io import BytesIO
 import sys
 from django.core.files.uploadedfile import InMemoryUploadedFile
-import uuid
 from django.core.validators import FileExtensionValidator
-
 
 
 class Product(models.Model):
@@ -28,11 +26,26 @@ class Product(models.Model):
 
 
 class Image(models.Model):
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images',)
-    path = models.ImageField(upload_to='media', validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'webp'])])
+    path = models.ImageField(upload_to='', validators=[FileExtensionValidator(allowed_extensions=['jpg', 'png', 'webp'])])
 
     def save(self, *args, **kwargs):
         ext = str(self).split('.')[-1].lower()
+        filename = ''.join(str(self).split('/')[-1].split('.')[0:-1])
+
+        # save image with ORIGINAL format
+        super(Image, self).save()
+
+        try:
+            Image_Format.objects.filter(image_id=self.id).delete()
+        except:
+            print("there are no image_format records yet")
+
+        # associate image with format in db by Image_Format table
+        image_ext = Format.objects.get_or_create(name=ext)
+        image_ext_id = image_ext[0].id
+        Image_Format.objects.get_or_create(image_id=self.id, format_id=image_ext_id)
 
         if ext != 'webp':
             output_thumb = BytesIO()
@@ -41,21 +54,20 @@ class Image(models.Model):
                 self.path = InMemoryUploadedFile(
                     output_thumb,
                     'ImageField',
-                    f'{uuid.uuid4()}.webp',
+                    f'{filename}.webp',
                     'image/webp',
                     sys.getsizeof(output_thumb),
                     None,
                 )
-        super(Image, self).save()
+            # save image with WEBP format
+            super(Image, self).save()
 
-        webp = Format.objects.get_or_create(name='webp')
-        webp_id = webp[0].id
-        Image_Format.objects.create(image_id=self.id, format_id=webp_id)
+            # associate image with format in db by Image_Format table
+            webp = Format.objects.get_or_create(name='webp')
+            webp_id = webp[0].id
+            Image_Format.objects.get_or_create(image_id=self.id, format_id=webp_id)
 
-        if ext != 'webp':
-            image_ext = Format.objects.get_or_create(name=ext)
-            image_ext_id = image_ext[0].id
-            Image_Format.objects.create(image_id=self.id, format_id=image_ext_id)
+
 
     def __str__(self):
         return f'{self.path}'
