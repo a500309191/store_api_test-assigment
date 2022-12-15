@@ -36,4 +36,4 @@ docker-compose up
 **login/password: admin**
 
 
-![Image alt](https://github.com/a500309191/store_api_test-assigment/blob/main/readme_images/product_list_screenshot.jpg)
+![Image alt](https://github.com/a500309191/store_api_test-assigment/blob/main/readme_images/product_list_screenshot.JPG)
