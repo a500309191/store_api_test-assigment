@@ -34,3 +34,6 @@ docker-compose up
 *by docker-compose up command superuser will create automatically*
 
 **login/password: admin**
+
+
+![Image alt](https://github.com/a500309191/store_api_test-assigment/blob/main/readme_images/product_list_screenshot.jpg)
