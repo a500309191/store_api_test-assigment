@@ -37,3 +37,8 @@ docker-compose up
 
 
 ![Image alt](https://github.com/a500309191/store_api_test-assigment/blob/main/readme_images/product_list_screenshot.JPG)
+
+uploaded image automatically saved in two formats: original (png, jpeg) and webp.
+
+By key "path" you can get relative path to image. Add format at the end of the path and get image
+
